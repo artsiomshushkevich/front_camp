@@ -25,7 +25,9 @@
         }
         
         _onSourceSelected(event) {
-            this.newsModel.getNewsBySourceId(event.currentTarget.value)
+            this.currentSourceId = event.currentTarget.value;
+
+            this.newsModel.getNewsBySourceId(this.currentSourceId)
                 .then((response) => {
                     const viewModel = {
                         news: response.articles
@@ -40,7 +42,23 @@
         }
 
         set currentSourceId(sourceId) {
-            this._currentSourceId = source;
+            this._currentSourceId = sourceId;
+        }
+
+        get newsModel() {
+            return this._newsModel || null;
+        }
+
+        set newsModel(newsModel) {
+            this._newsModel = newsModel;
+        }
+
+        get newsView() {
+            return this._newsView || null;
+        }
+
+        set newsView(newsView) {
+            this._newsView = newsView;
         }
     }
 
