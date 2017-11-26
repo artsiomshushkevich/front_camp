@@ -6,25 +6,33 @@
         }  
 
         initialize() {
-            this.newsView.onSourceSelected = this.onSourceSelected.bind(this);
+            this.newsView.onSourceSelected = this._onSourceSelected.bind(this);
+
             let newsPromises = Promise.all([
                 this.newsModel.getAllSources(), 
                 this.newsModel.getNewsBySourceId(this.currentSourceId)
             ]);
 
-
             newsPromises
                 .then((responses) => {
-                    let viewModel = {
-                        articles: responses[1].articles
+                    const viewModel = {
+                        sources: responses[0].sources,
+                        news: responses[1].articles
                     };
 
                     this.newsView.render(viewModel);
                 });
         }
         
-        onSourceSelected(event) {
+        _onSourceSelected(event) {
+            this.newsModel.getNewsBySourceId(event.currentTarget.value)
+                .then((response) => {
+                    const viewModel = {
+                        news: response.articles
+                    };
 
+                    this.newsView.render(viewModel);
+                });
         }
 
         get currentSourceId() {
