@@ -11,7 +11,7 @@
             });
 
             let selectContainer = `
-                <div id="sources-select-container" class="sources-select-container" >
+                <div id="sources-select-container" class="sources-select-container">
                     <select id="sources-select">${sourcesOptions}</select>
                 </div>
             `;
@@ -39,7 +39,7 @@
                 let newsList = this._constructNewsList(viewModel.news);
                 let newsContainer = `
                     <div class="news-container" id="news-container">
-                        ${newsList}
+                        ${newsList.join('')}
                     </div>
                 `;
 
@@ -48,7 +48,7 @@
                 this.container.querySelector('#sources-select').addEventListener('change', this.onSourceSelected);
             } else {
                 let newsList = this._constructNewsList(viewModel.news);
-                this.container.querySelector('#news-container').innerHTML = newsList;
+                this.container.querySelector('#news-container').innerHTML = newsList.join('');
             }
         }
 
