@@ -22,13 +22,32 @@
         _constructNewsList(news) {
             return news.map((item) => {
                 return `
-                    <div clas="news">  
-                        <span>${item.title}</span>
+                    <div class="news-item">
+                        <img class="photo" src="${item.urlToImage}" title=${item.title}></img>
+                        <div class="text-container">
+                            <a class="link" href="${item.url}" target="_blank">${item.title}</a>
+                            <p class="news-description">${item.description}</p>
+                            <div class="publish-time" >
+                                <span>${this._getFormattedPublishedTime(item.publishedAt)}</span>
+                            </div>
+                        </div>
+                        
+
                     </div>
                 `;
             });
 
             return newsContainer;
+        }
+
+        _getFormattedPublishedTime(time) {
+            if (!time) {
+                return '';
+            }
+
+            time = new Date(time);
+
+            return `Published: ${time.getDay()}.${time.getMonth()}.${time.getFullYear()} at ${time.getHours()}:${time.getMinutes()}`;
         }
 
         render(viewModel) {
