@@ -12,7 +12,7 @@
 
             let selectContainer = `
                 <div id="sources-select-container" class="sources-select-container">
-                    <select id="sources-select">${sourcesOptions}</select>
+                    <select class="sources-select" id="sources-select">${sourcesOptions}</select>
                 </div>
             `;
 
