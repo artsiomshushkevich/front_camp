@@ -1,4 +1,4 @@
-(() => {
-    this.app = {};
-    this.app.modules = {};
-})();
+((window) => {
+    window.app = {};
+    window.app.modules = {};
+})(window);

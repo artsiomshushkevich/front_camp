@@ -1,3 +1,3 @@
-(() => {
-    this.app.modules.news = {};
-})();
+((window) => {
+    window.app.modules.news = {};
+})(window);

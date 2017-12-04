@@ -1,4 +1,4 @@
-(() => {
+((window) => {
     class NewsController {
         constructor(newsModel, newsView) {
             this.newsModel = newsModel;
@@ -62,5 +62,5 @@
         }
     }
 
-    this.app.modules.news.controller = NewsController;
-})();
+    window.app.modules.news.controller = NewsController;
+})(window);

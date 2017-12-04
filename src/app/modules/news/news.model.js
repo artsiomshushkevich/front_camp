@@ -1,5 +1,5 @@
-(() => {
-    const {apiKey} = this.app.config;
+((window) => {
+    const {apiKey} = window.app.config;
 
     class NewsModel {
         getNewsBySourceId(sourceId) {
@@ -17,5 +17,5 @@
         }
     }
 
-    this.app.modules.news.model = NewsModel;
-})();
+    window.app.modules.news.model = NewsModel;
+})(window);

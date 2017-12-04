@@ -1,4 +1,4 @@
-(() => {
+((window) => {
     class NewsView {
         constructor(container) {
             this.container = container;
@@ -88,5 +88,5 @@
         }
     }
 
-    this.app.modules.news.view = NewsView;
-})();
+    window.app.modules.news.view = NewsView;
+})(window);

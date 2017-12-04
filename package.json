@@ -1,0 +1,28 @@
+{
+  "name": "front_camp",
+  "version": "1.0.0",
+  "description": "the first home task with babel usage",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "transpile": "./node_modules/.bin/babel src --out-dir build --presets env"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/artsiomshushkevich/front_camp.git"
+  },
+  "keywords": [
+    "es6",
+    "babel"
+  ],
+  "author": "Artsiom Shushkevich <artemshushkevich@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/artsiomshushkevich/front_camp/issues"
+  },
+  "homepage": "https://github.com/artsiomshushkevich/front_camp#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1"
+  }
+}
