@@ -1,5 +1,6 @@
 ((window) => {
     const {apiKey} = window.app.config;
+    console.log('initialize  news model');
 
     class NewsModel {
         getNewsBySourceId(sourceId) {

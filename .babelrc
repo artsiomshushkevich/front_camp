@@ -1,9 +1,14 @@
 {
+    "plugins": [
+        "./plugins/delete-console-log.js"
+    ],
     "presets": [
         ["env", {
-          "targets": {
+            
+            "targets": {
             "browsers": ["ie 10"]
-          }
+            },
+            "useBuiltIns": true
         }]
-      ]
+      ] 
 }
