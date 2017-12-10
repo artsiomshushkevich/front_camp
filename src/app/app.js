@@ -1,9 +1,7 @@
-((window) => {
-    console.log('initialize app');
-    
-    window.app = {};
-    window.app.modules = {};
+import newsModule from './modules/news/index';
 
-    console.dir(window.app);
-})(window);
-
+export default {
+    modules: {
+        news: newsModule
+    }
+};
