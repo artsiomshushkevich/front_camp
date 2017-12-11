@@ -1,7 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const UglifyJsPlugin = require('webpack').optimize.UglifyJsPlugin;
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
   entry: './src/app/index.js',
@@ -10,8 +10,8 @@ module.exports = {
     path: path.resolve(__dirname, 'dist')
   },
   plugins: [
-    new UglifyJsPlugin(),
-    new ExtractTextPlugin("styles.css"),
+    new CleanWebpackPlugin(['dist']),
+    new ExtractTextWebpackPlugin("styles.css"),
     new HtmlWebpackPlugin({
       template: './src/index.html',
       minify: {
@@ -23,37 +23,27 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        exclude: /(node_modules|bower_components)/,
+        exclude: /node_modules/,
         use: {
-          loader: 'babel-loader',
-          options: {
-            plugins: [require('./plugins/delete-console-log')],
-            presets: ['env']
-          }
+          loader: 'babel-loader'
         }
       },
       {
         test: /\.css$/,
-        use: ExtractTextPlugin.extract({
+        use: ExtractTextWebpackPlugin.extract({
           fallback: 'style-loader',
           use: [
             {
               loader: 'css-loader',
               options: {
                 minimize: true,
-                sourceMap: true 
+                sourceMap: true
               } 
-            }
+            },
+            'postcss-loader'
           ]
         })
       }
     ]
-  },
-  devServer: {
-    contentBase: path.join(__dirname, 'dist/'),
-    compress: true,
-    port: 9000,
-    // stats: 'errors-only',
-    open: true
   }
 }; 
