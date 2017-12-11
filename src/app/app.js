@@ -1,5 +1,5 @@
 import newsModule from './modules/news/index';
-import mainStyle from '../styles/main.css';
+import newsStyles from '../styles/news.css';
 
 export default {
     modules: {
