@@ -1,0 +1,172 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+  
+html, 
+body {
+    height: 100%;
+}
+  
+body {
+    background-color: #ecf0f1;
+}
+  
+.page-container {
+    font-family: Arial, sans-serif;
+}
+
+.page-container {
+	min-height: 100%;
+	margin-bottom: -200px;
+}
+
+.content-container {
+	margin: 30px auto;
+	width: 70%;
+}
+
+.page-header {
+	display: flex;
+	justify-content: space-between;
+	height: 100px;
+	padding: 30px;
+	position: relative
+}
+
+.show-news-btn {
+	background-color: #464547;
+	border: 1px solid white;
+	border-radius: 4px;
+	bottom: 15px;
+	color: white;
+	font-size: 13px;
+	height: 35px;
+	left: 15px;
+	padding: 4px;
+	position: absolute;
+	transition: background-color ease 0.4s;
+	width: 80px;
+}
+
+.show-news-btn:hover {
+	background-color: white;
+	color: #464547;
+}
+
+.page-label {
+	color: white;
+}
+  
+.push {
+	height: 200px;
+}
+  
+.page-header,
+.page-footer {
+	background-color: #464547;
+}
+  
+.page-footer {
+	color: white;
+	font-family: Arial, Helvetica, sans-serif;
+	height: 200px;
+	padding-top: 30px;
+}
+
+.copyright-container {
+	margin: 10px auto;
+	text-align: center;
+	width: 300px;
+}
+
+.page-footer a {
+	color: white;
+	text-decoration: none;
+}
+
+.page-footer a:hover {
+	text-decoration: underline;
+}
+
+@media all and (max-width : 319px) {
+	body {
+		width: 800px;
+	}
+}
+
+@media only screen and (min-width : 320px) and (max-width : 480px) {
+	.content-container {
+		width: 100%;
+	}
+
+	.page-header {
+		height: 70px;
+	}
+
+	.page-footer {
+		height: 100px;
+	}
+
+	.page-container {
+		margin-bottom: -100px;
+	}
+	
+	.push {
+		height: 100px;
+	}
+
+}
+
+
+@media all and (min-width : 481px) and (max-width : 767px) {
+	.content-container {
+		width: 90%;
+	}
+
+	.page-footer {
+		height: 140px;
+	}
+
+	.page-container {
+		margin-bottom: -140px;
+	}
+
+	.push {
+		height: 140px;
+	}
+}
+
+@media all and (min-width : 768px) and (max-width : 1024px) {
+	.content-container {
+		width: 90%;
+	}
+
+	
+	.page-footer {
+		height: 160px;
+	}
+
+	.page-container {
+		margin-bottom: -160px;
+	}
+	
+	.push {
+		height: 160px;
+	}
+}
+
+@media all and (min-width : 1025px) and (max-width : 1223px) {
+	.content-container {
+		width: 85%;
+	}
+}
+
+@media all and (min-width : 1224px) {
+	.content-container {
+		width: 80%;
+	}
+}
+
+	

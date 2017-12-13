@@ -1,0 +1,15 @@
+{
+    "plugins": [
+        "./plugins/delete-console-log.js",
+        "syntax-dynamic-import"
+    ],
+    "presets": [
+        ["env", {
+            "modules": false,
+            "targets": {
+            "browsers": ["ie 10"]
+            },
+            "useBuiltIns": true
+        }]
+    ]
+}
