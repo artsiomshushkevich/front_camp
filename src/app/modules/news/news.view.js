@@ -1,3 +1,7 @@
+import newsStyles from '../../../styles/news.css';
+
+import newsActions from './news.actions';
+import newsActionCreator from './news.action-creator';
 
 export default class NewsView {
     constructor(container) {
@@ -7,7 +11,7 @@ export default class NewsView {
     _constructSourcesSelect(sources) {
         let sourcesOptions = sources.map((item) => {
             const isDefaultListItem = item.id === 'bbc-news';
-            return `<option ${isDefaultListItem ? 'selected': ''} value="${item.id}">${item.name}</option>`
+            return `<option ${isDefaultListItem ? 'selected': ''} value="${item.id}">${item.name}</option>`;
         });
 
         let selectContainer = `
@@ -31,8 +35,6 @@ export default class NewsView {
                             <span>${this._getFormattedPublishedTime(item.publishedAt)}</span>
                         </div>
                     </div>
-                    
-
                 </div>
             `;
         });
@@ -50,12 +52,13 @@ export default class NewsView {
         return `Published: ${time.getDay()}.${time.getMonth()}.${time.getFullYear()} at ${time.getHours()}:${time.getMinutes()}`;
     }
 
-    render(viewModel) {
-        const isInitialization = !!viewModel.sources;
-    
+    render(state) {
+        const isInitialization = !document.querySelector('#sources-select-container');
+        const newsList = this._constructNewsList(state.news);
+
         if (isInitialization) {
-            let selectContainer = this._constructSourcesSelect(viewModel.sources);
-            let newsList = this._constructNewsList(viewModel.news);
+            let selectContainer = this._constructSourcesSelect(state.sources);
+            
             let newsContainer = `
                 <div class="news-container" id="news-container">
                     ${newsList.join('')}
@@ -64,11 +67,15 @@ export default class NewsView {
 
             this.container.innerHTML = selectContainer + newsContainer;
 
-            this.container.querySelector('#sources-select').addEventListener('change', this.onSourceSelected);
+            this.container.querySelector('#sources-select').addEventListener('change', this._onSourceSelected);
         } else {
-            let newsList = this._constructNewsList(viewModel.news);
             this.container.querySelector('#news-container').innerHTML = newsList.join('');
         }
+    }
+
+    _onSourceSelected(event) {
+        const sourceId = event.currentTarget.value;
+        newsActionCreator.getNewsBySourceId(sourceId);
     }
 
     get container() {
@@ -77,14 +84,6 @@ export default class NewsView {
 
     set container(container){
         this._container = container;
-    }
-
-    get onSourceSelected() {
-        return this._onSourceSelected || null;
-    }
-
-    set onSourceSelected(onSourceSelected) {
-        this._onSourceSelected = onSourceSelected;
     }
 }
 

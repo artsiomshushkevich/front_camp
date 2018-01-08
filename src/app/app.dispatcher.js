@@ -1,9 +1,5 @@
 import Dispatcher from './utils/dispatcher';
 
-class AppDispatcher extends Dispatcher {
-    constructor() {
-        super();
-    }
-}
+const appDispatcher = new Dispatcher();
 
-export default new AppDispatcher();
+export default appDispatcher;
