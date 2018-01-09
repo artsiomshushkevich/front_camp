@@ -1,8 +1,16 @@
-import newsModule from './modules/news/index';
-import newsStyles from '../styles/news.css';
+import NewsModuleAdapter from './adapters/news.adapter';
 
-export default {
-    modules: {
-        news: newsModule
+export default class App {
+    //Creational #1 Factory method
+    createModule(moduleName) {
+        let newModule = null;
+
+        switch (moduleName) {
+            case 'news':
+                newModule = new NewsModuleAdapter();
+                break;
+        }
+
+        return newModule;
     }
-};
+}
