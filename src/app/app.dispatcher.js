@@ -1,5 +1,15 @@
-import Dispatcher from './utils/dispatcher';
+import DispatcherProxy from './utils/dispatcher.proxy';
 
-const appDispatcher = new Dispatcher();
+export default class AppDispatcher extends DispatcherProxy {
+    constructor() {
+        super();
+    }
 
-export default appDispatcher;
+    static get instance() {
+        if (!this._instance) {
+            this._instance = new AppDispatcher();
+        }
+
+        return this._instance;
+    }
+}

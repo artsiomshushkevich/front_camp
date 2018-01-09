@@ -1,8 +1,8 @@
-import Dispatcher from '../../utils/dispatcher';
+import DispatcherProxy from '../../utils/dispatcher.proxy';
 
 class NewsStore {
     constructor() {
-        this._emitter = new Dispatcher();
+        this._emitter = new DispatcherProxy();
     }
 
     get news() {
@@ -34,7 +34,5 @@ class NewsStore {
     }
 }
 
-const newsStore = new NewsStore();
-
-export default newsStore;
+export default NewsStore;
  

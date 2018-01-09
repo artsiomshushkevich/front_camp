@@ -1,45 +1,51 @@
 import mainStyles from '../styles/main.css';
 
-import NewsView from './modules/news/news.view';
-import newsStore from './modules/news/news.store';
-import newsActions from './modules/news/news.actions';
-import newsActionCreator from './modules/news/news.action-creator';
-import appDispatcher from './app.dispatcher';
+import App from './app';
+import AppDispatcher from './app.dispatcher';
 
 (() => {
     const showNewsBtn = document.querySelector('#show-news-btn');
     showNewsBtn.addEventListener('click', function() {
         import(/* webpackChunkName: "app" */ './app').then((module) => {
-            let appContainer = document.querySelector('#app-container');
-            let newsView = new NewsView(appContainer);
+            const app = new App();
+            const newsModule = app.createModule('news');
 
-            newsStore.addEventListener(function() {
+            const appContainer = document.querySelector('#app-container');
+            const NewsView = newsModule.getView();
+            const newsViewInstance = new NewsView(appContainer);
+
+            const NewsStore = newsModule.getStore();
+            const newsStoreInstance = new NewsStore();
+            newsStoreInstance.addEventListener(function() {
                 const state = {
-                    news: newsStore.news,
-                    sources: newsStore.sources
+                    news: newsStoreInstance.news,
+                    sources: newsStoreInstance.sources
                 };
 
-                newsView.render(state);
+                newsViewInstance.render(state);
             });
 
+            const appDispatcher = AppDispatcher.instance;
+            const newsActions = newsModule.getActions();
             appDispatcher.register((payload) => {
                 const actionType = payload.type;
         
                 switch(actionType) {
                     case newsActions.GET_NEWS_BY_SOURCE_ID:
-                        newsStore.news = payload.news;
+                        newsStoreInstance.news = payload.news;
                         break;
                     case newsActions.INITIALIZE: 
-                        newsStore.news = payload.news;
-                        newsStore.sources = payload.sources;
+                        newsStoreInstance.news = payload.news;
+                        newsStoreInstance.sources = payload.sources;
                         break;
                         
                 }
 
-                newsStore.emit();
+                newsStoreInstance.emit();
             });
 
-            newsActionCreator.initialize();
+            const NewsActionCreator = newsModule.getActionCreator();
+            NewsActionCreator.initialize();
         });
     });
     

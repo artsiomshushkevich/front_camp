@@ -1,8 +1,15 @@
-import newsModule from './modules/news/index';
+import NewsModuleAdapter from './adapters/news.adapter';
 
+export default class App {
+    createModule(moduleName) {
+        let newModule = null;
 
-export default {
-    modules: {
-        news: newsModule
+        switch (moduleName) {
+            case 'news':
+                newModule = new NewsModuleAdapter();
+                break;
+        }
+
+        return newModule;
     }
-};
+}

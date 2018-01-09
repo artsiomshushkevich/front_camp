@@ -1,9 +1,11 @@
 import config from '../../config/config';
-import appDispatcher from '../../app.dispatcher';
+import AppDispatcher from '../../app.dispatcher';
 import newsActions  from './news.actions';
 
+const appDispatcher = AppDispatcher.instance;
+
 class NewsActionCreator {
-    getNewsBySourceId(sourceId) {
+    static getNewsBySourceId(sourceId) {
         return this._getNewsBySourceId(sourceId)
             .then((res) => {
                 appDispatcher.dispatch({
@@ -13,17 +15,17 @@ class NewsActionCreator {
             });
     }
 
-    _getNewsBySourceId(sourceId) {
+    static _getNewsBySourceId(sourceId) {
         const newsURL = `https://newsapi.org/v2/top-headlines?sources=${sourceId}&apiKey=${config.apiKey}`;
         
         return fetch(newsURL)
             .then(res => res.json());
     }
 
-    initialize() {
+    static initialize() {
         let newsPromises = Promise.all([
-            this._getAllSources(), 
-            this._getNewsBySourceId('bbc-news')
+            NewsActionCreator._getAllSources(), 
+            NewsActionCreator._getNewsBySourceId('bbc-news')
         ]);
 
         return newsPromises
@@ -36,14 +38,14 @@ class NewsActionCreator {
             });
     }
 
-    _getAllSources() {
+    static _getAllSources() {
         const sourcesURL = `https://newsapi.org/v2/sources?apiKey=${config.apiKey}`;
         
         return fetch(sourcesURL)
             .then(res => res.json());
     }
 
-    getAllSources() {
+    static getAllSources() {
         const sourcesURL = `https://newsapi.org/v2/sources?apiKey=${config.apiKey}`;
     
         return this._getAllSources()
@@ -56,7 +58,5 @@ class NewsActionCreator {
     }
 }
 
-const newsActionCreator = new NewsActionCreator();
-
-export default newsActionCreator;
+export default NewsActionCreator;
 
