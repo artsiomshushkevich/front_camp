@@ -2,6 +2,7 @@ import newsStyles from '../../../styles/news.css';
 
 import newsActions from './news.actions';
 import newsActionCreator from './news.action-creator';
+import Iterator from '../../utils/iterator';
 
 export default class NewsView {
     constructor(container) {
@@ -24,8 +25,11 @@ export default class NewsView {
     }
 
     _constructNewsList(news) {
-        return news.map((item) => {
-            return `
+        const newsList = [];
+        const iterator = new Iterator(news);
+
+        iterator.each((item) => {
+            newsList.push(`
                 <div class="news-item">
                     <img class="photo" src="${item.urlToImage}" title=${item.title}></img>
                     <div class="text-container">
@@ -36,10 +40,10 @@ export default class NewsView {
                         </div>
                     </div>
                 </div>
-            `;
+            `);
         });
 
-        return newsContainer;
+        return newsList;
     }
 
     _getFormattedPublishedTime(time) {
