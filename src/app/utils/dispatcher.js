@@ -1,3 +1,4 @@
+//Behavioral #1 Observer
 export default class Dispatcher {
     constructor() {
         this.id = 0;

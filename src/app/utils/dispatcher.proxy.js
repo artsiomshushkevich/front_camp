@@ -1,5 +1,6 @@
 import Dispatcher from './dispatcher';
 
+//Structural #1 Proxy
 export default class DispatcherProxy {
     constructor() {
         this._dispather = new Dispatcher(); 
@@ -25,7 +26,7 @@ export default class DispatcherProxy {
         if (typeof payload === 'object' && 
             !(typeof payload.type === 'string')) {
             
-            throw Error('Payload is not an object or have incorrect type property (should be string)!');
+            throw Error('Payload is not an object or has incorrect value of "type" property (should be string)!');
         }
 
         this._dispather.dispatch(payload);

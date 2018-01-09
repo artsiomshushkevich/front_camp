@@ -1,3 +1,4 @@
+//Behavioral #2 Iterator
 export default class Iterator {
     constructor(items) {
         this.index = 0;

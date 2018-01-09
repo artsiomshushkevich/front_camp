@@ -1,6 +1,7 @@
 import BaseModule from './base.module';
 import NewsModule from '../modules/news/index';
 
+//Structural #2 Adapter
 export default class NewsModuleAdapter extends BaseModule {
     constructor() {
         super();
